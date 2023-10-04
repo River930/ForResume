@@ -1,0 +1,88 @@
+﻿@model IEnumerable<_7_Team_WebApi.Models.ViewModels.OrderItemVM>
+
+@{
+    ViewBag.Title = "GetOrderItems";
+}
+
+<h3 class="search">訂單明細</h3>
+
+<div class="bg">
+    <img src="/File/pic-login.jpg">
+</div>
+
+<table class="table table-striped table-hover">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="customTablebackground">
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("返回訂單總覽", "Index",null,new {@class ="btn btn-primary"})
+</div>
+
+<!-- <div class="back">
+    <p ><a href="/Order/Index/">返回訂單總覽</a></p>
+</div> -->
+
+@section CSS {
+    <style>
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+        .bg img {
+            min-height: 100%;
+            width: 100%;
+            opacity: 30%;
+        }
+        body {
+            margin-top: 120px;
+        }
+        .customTablebackground {
+            background-color: rgba(240, 240, 240, 0.8);
+        }
+    </style>
+}

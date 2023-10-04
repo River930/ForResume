@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Team_7_WebApi_Client.Models.Views.Members.MemberOrderVm>
+
+@{
+    ViewBag.Title = "訂單查詢";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<h3 class="search">訂單查詢</h3>
+
+<div class="bg">
+    <img src="/Files/pic-login.jpg">
+</div>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Payment)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Shipping)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="customTablebackground">
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipping)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("檢視訂單明細", "GetOrderItems", new { orderid = item.Id }, new { @class = "btn btn-outline-dark" }) 
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section css{
+    <style>
+        .search {
+            margin-top: 100px;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+
+        .table {
+            padding-bottom: 100px;
+        }
+        
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+        .bg img {
+            min-height: 100%;
+            width: 100%;
+            opacity: 30%;
+        }
+
+        #footer {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+
+        .mb-3 {
+            padding-bottom: 30px;
+            text-align: center;
+        }
+
+        .container {
+            padding-bottom: 100px;
+        }
+        .customTablebackground {
+            background-color: rgba(240, 240, 240, 0.8);
+        }
+
+    </style>
+}

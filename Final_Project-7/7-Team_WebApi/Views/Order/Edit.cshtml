@@ -1,0 +1,143 @@
+﻿@using _7_Team_WebApi.Models.Entities;
+
+@model _7_Team_WebApi.Models.ViewModels.OrderVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3>編輯訂單狀態</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="bg">
+        <img src="/File/pic-login.jpg">
+    </div>
+
+    <div class="container">
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Member, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.Member)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.PhoneNumber)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.Address)</span>
+
+
+            </div>
+
+            <div class="mb-3" id="OrderStatus">
+                @Html.LabelFor(model => model.OrderStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="form-control" style="border: none; background-color: transparent;">
+                    @Html.DropDownListFor(model => model.StatusID,
+                    new SelectList(Model.OrderStatusList, "Id", "Status"),
+                    "請選擇欲更改的狀態",
+                    new { @class = "custom-select", required = "required" })
+                </div>
+
+                @Html.ValidationMessageFor(model => model.OrderStatus, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Payment, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.Payment)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Shipping, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.Shipping)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.Total)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <span class="form-control" style="border: none; background-color: transparent;">@Html.DisplayFor(model => model.OrderDate)</span>
+
+
+            </div>
+
+            <div class="mb-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="儲存" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+}
+
+<div>
+    @Html.ActionLink("返回訂單總覽", "Index",null,new {@class = "btn btn-outline-dark" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section CSS {
+    <style>
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+        }
+
+        .bg img {
+            min-height: 100%;
+            width: 100%;
+            opacity: 30%;
+        }
+        body {
+            margin-top: 120px;
+        }
+        .container {
+            background-color: #ffffff; 
+            padding: 20px; 
+            border-radius: 10px;
+            opacity: 0.9;
+        }
+    </style>
+}
